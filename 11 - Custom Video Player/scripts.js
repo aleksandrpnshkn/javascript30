@@ -69,6 +69,8 @@ progress.addEventListener('mousedown', handleScrub);
 
 //---fullscreen---
 
+const fullscreen = player.querySelector('.player__fullscreen');
+
 let fullScreenEnabled = !!(document.fullscreenEnabled 
   || document.mozFullScreenEnabled 
   || document.msFullscreenEnabled 
@@ -84,8 +86,6 @@ function isFullScreen() {
     || document.fullscreenElement);
 }
 
-const fullscreen = player.querySelector('.player__fullscreen');
-
 if (!fullScreenEnabled) {
   fullscreen.style.display = 'none';
 }
@@ -96,14 +96,12 @@ function handleFullscreen() {
     else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
     else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
     else if (document.msExitFullscreen) document.msExitFullscreen();
-    //setFullscreenData(false);
   } else {
     if (player.requestFullscreen) player.requestFullscreen();
     else if (videoContainer.mozRequestFullScreen) videoContainer.mozRequestFullScreen();
     else if (videoContainer.webkitRequestFullScreen) videoContainer.webkitRequestFullScreen();
     else if (videoContainer.msRequestFullscreen) videoContainer.msRequestFullscreen();
-    //setFullscreenData(true);
  }
 }
 
-fullscreen.addEventListener('click', fullscreenHandler);
+fullscreen.addEventListener('click', handleFullscreen);
